@@ -12,10 +12,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface NoteyProjection {
-	/**
-	 * The Notes viewname to project
-	 * 
-	 * @return Notes viewname
-	 */
-	String value();
+  /**
+   * The Notes viewname to project
+   * 
+   * @return Notes viewname
+   */
+  String value();
 }

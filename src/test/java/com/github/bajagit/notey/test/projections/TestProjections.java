@@ -43,13 +43,12 @@ public class TestProjections {
 		
 		List<Pojo> pojo = Projections.all(db, Pojo.class);
 		assertThat(pojo).isNotNull();
-		System.out.println(pojo.size());
 		assertThat(pojo.size()).isEqualTo(1);
 		assertThat(pojo.get(0).getVal()).isEqualTo("name");
 	}
 	
 	@Test
-	public void testAll_WrongType() throws NotesException {
+	public void testAll_WrongFieldTypeIsIgnored() throws NotesException {
 		Database db = mock(Database.class);
 		View vw = mock(View.class);
 		when(db.getView("view-name"))
@@ -70,7 +69,6 @@ public class TestProjections {
 		
 		List<Pojo> pojo = Projections.all(db, Pojo.class);
 		assertThat(pojo).isNotNull();
-		System.out.println(pojo.size());
 		assertThat(pojo.size()).isEqualTo(1);
 		assertThat(pojo.get(0).getVal()).isNull();
 	}

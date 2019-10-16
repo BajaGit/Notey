@@ -53,8 +53,18 @@ Projection results are mapped java Pojos.
 See Cookbook#Basic Projection
 
 
+### More Utilities
 
+The class NoteyUtils contains many static methods that simplify the direct interaction with domino.
 
+- Failsafe recycle
+
+      NoteyUtils.recycle(Base... base)
+      
+- Vector typing
+
+	  NoteyUtils.typed(Vector<?> any)
+	  
 
 ## Features / Cookbook
 
@@ -117,3 +127,12 @@ results in
 	deletionMark = "Yes"
 }
 
+## Development
+
+To build this project you need to install Notes.jar into your local maven repository  with the install:install-file goal as 
+
+	<dependency>
+		<groupId>com.ibm</groupId>
+		<artifactId>notes</artifactId>
+		<version>1.0.0</version>
+	</dependency>

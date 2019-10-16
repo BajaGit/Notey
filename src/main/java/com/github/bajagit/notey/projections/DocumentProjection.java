@@ -4,5 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class DocumentProjection {
-	@Getter @Setter private String documentUNID = null;
+  @Getter
+  @Setter
+  private String documentUNID = null;
 }
