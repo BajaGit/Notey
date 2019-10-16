@@ -1,10 +1,6 @@
 package com.github.bajagit.notey.projections;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.github.bajagit.notey.documents.DocumentReference;
 
-public class DocumentProjection {
-  @Getter
-  @Setter
-  private String documentUNID = null;
+public class DocumentProjection extends DocumentReference {
 }

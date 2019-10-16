@@ -1,16 +1,20 @@
 package com.github.bajagit.notey.util;
 
 import java.util.Vector;
-
 import com.github.bajagit.notey.exception.NoteyRuntimeException;
-
 import lotus.domino.Base;
+import lotus.domino.Document;
 import lotus.domino.NotesException;
 
 public final class NoteyUtils {
 
   private NoteyUtils() {
     throw new UnsupportedOperationException("no");
+  }
+
+
+  public static NoteyDocumentWrapper wrap(final Document doc) {
+    return new NoteyDocumentWrapper(doc);
   }
 
   /**
@@ -20,10 +24,10 @@ public final class NoteyUtils {
    * @param with
    * @param user
    */
-  public static <T extends Base> void with(T with, NotesConsumer<T> user) {
+  public static <T extends Base> void with(final T with, final NotesConsumer<T> user) {
     try {
       user.accept(with);
-    } catch (Exception ne) {
+    } catch (final Exception ne) {
       throw new NoteyRuntimeException(ne);
     }
   }
@@ -35,10 +39,10 @@ public final class NoteyUtils {
    * @param with
    * @param user
    */
-  public static <T extends Base, R> R mapWith(T with, NotesFunction1<T, R> user) {
+  public static <T extends Base, R> R mapWith(final T with, final NotesFunction1<T, R> user) {
     try {
       return user.apply(with);
-    } catch (Exception ne) {
+    } catch (final Exception ne) {
       throw new NoteyRuntimeException(ne);
     }
   }
@@ -49,7 +53,7 @@ public final class NoteyUtils {
    * @param toType
    * @return
    */
-  public static Vector<Object> typed(Vector<?> toType) {
+  public static Vector<Object> typed(final Vector<?> toType) {
     return typed(toType, Object.class);
   }
 
@@ -64,7 +68,7 @@ public final class NoteyUtils {
    * @return
    */
   @SuppressWarnings("unchecked")
-  public static <T> Vector<T> typed(Vector<?> toType, Class<T> type) {
+  public static <T> Vector<T> typed(final Vector<?> toType, final Class<T> type) {
     return (Vector<T>) toType;
   }
 
@@ -73,8 +77,8 @@ public final class NoteyUtils {
    * 
    * @param bases to recycle
    */
-  public static void recycle(Base... bases) {
-    for (Base base : bases) {
+  public static void recycle(final Base... bases) {
+    for (final Base base : bases) {
       NoteyUtils.recycle(base);
     }
   }
@@ -84,10 +88,10 @@ public final class NoteyUtils {
    * 
    * @param base to recycle
    */
-  public static void recycle(Base base) {
+  public static void recycle(final Base base) {
     try {
       base.recycle();
-    } catch (NotesException ne) {
+    } catch (final NotesException ne) {
       // TODO: configurable if this throws?? ignore for now
     }
   }
